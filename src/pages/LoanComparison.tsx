@@ -18,10 +18,47 @@ import {
   TableHead, 
   TableCell 
 } from "@/components/ui/table";
-import { ChevronRight, AlertCircle, Home, Car, Briefcase } from "lucide-react";
+import { ChevronRight, AlertCircle, Home, Car, Briefcase, Calculator } from "lucide-react";
+import LoanCalculator, { LoanResults } from "@/components/LoanCalculator";
+import LoanComparisonChart from "@/components/LoanComparisonChart";
 
 const LoanComparison = () => {
   const [activeTab, setActiveTab] = useState("home");
+  const [homeLoanResults, setHomeLoanResults] = useState<LoanResults>({
+    lowCreditEmi: 69563,
+    lowCreditTotal: 16695120,
+    lowCreditInterest: 11695120,
+    mediumCreditEmi: 60369,
+    mediumCreditTotal: 14488560,
+    mediumCreditInterest: 9488560,
+    highCreditEmi: 44986,
+    highCreditTotal: 10796640,
+    highCreditInterest: 5796640
+  });
+
+  const [autoLoanResults, setAutoLoanResults] = useState<LoanResults>({
+    lowCreditEmi: 34901,
+    lowCreditTotal: 2094060,
+    lowCreditInterest: 594060,
+    mediumCreditEmi: 32596,
+    mediumCreditTotal: 1955760,
+    mediumCreditInterest: 455760,
+    highCreditEmi: 31148,
+    highCreditTotal: 1868880,
+    highCreditInterest: 368880
+  });
+
+  const [personalLoanResults, setPersonalLoanResults] = useState<LoanResults>({
+    lowCreditEmi: 38087,
+    lowCreditTotal: 2285220,
+    lowCreditInterest: 785220,
+    mediumCreditEmi: 34942,
+    mediumCreditTotal: 2096520,
+    mediumCreditInterest: 596520,
+    highCreditEmi: 32608,
+    highCreditTotal: 1956480,
+    highCreditInterest: 456480
+  });
 
   return (
     <div className="font-poppins min-h-screen flex flex-col">
@@ -30,10 +67,10 @@ const LoanComparison = () => {
       <main className="flex-grow pt-16">
         <div className="bg-samatva-teal/10 py-20">
           <div className="container mx-auto px-4 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold font-montserrat mb-4">Loan Comparison</h1>
+            <h1 className="text-4xl md:text-5xl font-bold font-montserrat mb-4">Interactive Loan Comparison</h1>
             <p className="text-lg text-gray-700 max-w-3xl mx-auto">
-              Compare different loan options based on your credit score to make an informed financial decision.
-              See how your credit score impacts loan terms and potential savings.
+              Compare loan options across different credit scores and see potential savings in real-time. 
+              Adjust loan amount and tenure to visualize the impact on EMIs and total repayment.
             </p>
           </div>
         </div>
@@ -60,6 +97,19 @@ const LoanComparison = () => {
 
             {/* Home Loan Comparison */}
             <TabsContent value="home">
+              <LoanCalculator 
+                loanType="home" 
+                defaultAmount={5000000} 
+                defaultTenure={20}
+                updateResults={setHomeLoanResults}
+              />
+              
+              <LoanComparisonChart 
+                loanType="home"
+                loanAmount={5000000}
+                results={homeLoanResults}
+              />
+
               <Card>
                 <CardHeader>
                   <CardTitle className="text-2xl flex items-center">
@@ -67,7 +117,7 @@ const LoanComparison = () => {
                     Home Loan Comparison
                   </CardTitle>
                   <CardDescription>
-                    Compare home loan options for a ₹50 Lakhs loan over a 20-year tenure
+                    Compare home loan options for different credit score ranges
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -95,34 +145,44 @@ const LoanComparison = () => {
                           <TableCell className="text-center text-green-600">9%</TableCell>
                         </TableRow>
                         <TableRow>
-                          <TableCell className="font-medium">Loan Amount</TableCell>
-                          <TableCell className="text-center">₹50 Lakhs</TableCell>
-                          <TableCell className="text-center">₹50 Lakhs</TableCell>
-                          <TableCell className="text-center">₹50 Lakhs</TableCell>
-                        </TableRow>
-                        <TableRow>
                           <TableCell className="font-medium">EMI (for 20 years)</TableCell>
-                          <TableCell className="text-center">₹69,563</TableCell>
-                          <TableCell className="text-center">₹60,369</TableCell>
-                          <TableCell className="text-center">₹44,986</TableCell>
+                          <TableCell className="text-center">₹{homeLoanResults.lowCreditEmi.toLocaleString('en-IN')}</TableCell>
+                          <TableCell className="text-center">₹{homeLoanResults.mediumCreditEmi.toLocaleString('en-IN')}</TableCell>
+                          <TableCell className="text-center">₹{homeLoanResults.highCreditEmi.toLocaleString('en-IN')}</TableCell>
                         </TableRow>
                         <TableRow>
                           <TableCell className="font-medium">Total Repayment</TableCell>
-                          <TableCell className="text-center">₹1.66 Crores</TableCell>
-                          <TableCell className="text-center">₹1.44 Crores</TableCell>
-                          <TableCell className="text-center">₹1.06 Crores</TableCell>
+                          <TableCell className="text-center">
+                            ₹{(homeLoanResults.lowCreditTotal / 10000000).toFixed(2)} Cr
+                          </TableCell>
+                          <TableCell className="text-center">
+                            ₹{(homeLoanResults.mediumCreditTotal / 10000000).toFixed(2)} Cr
+                          </TableCell>
+                          <TableCell className="text-center">
+                            ₹{(homeLoanResults.highCreditTotal / 10000000).toFixed(2)} Cr
+                          </TableCell>
                         </TableRow>
                         <TableRow>
                           <TableCell className="font-medium">Total Interest Paid</TableCell>
-                          <TableCell className="text-center">₹1.16 Crores</TableCell>
-                          <TableCell className="text-center">₹94 Lakhs</TableCell>
-                          <TableCell className="text-center">₹56 Lakhs</TableCell>
+                          <TableCell className="text-center">
+                            ₹{(homeLoanResults.lowCreditInterest / 10000000).toFixed(2)} Cr
+                          </TableCell>
+                          <TableCell className="text-center">
+                            ₹{(homeLoanResults.mediumCreditInterest / 10000000).toFixed(2)} Cr
+                          </TableCell>
+                          <TableCell className="text-center">
+                            ₹{(homeLoanResults.highCreditInterest / 10000000).toFixed(2)} Cr
+                          </TableCell>
                         </TableRow>
                         <TableRow>
                           <TableCell className="font-medium">Potential Savings vs HFC</TableCell>
                           <TableCell className="text-center">—</TableCell>
-                          <TableCell className="text-center font-medium text-amber-700">₹22 Lakhs</TableCell>
-                          <TableCell className="text-center font-medium text-green-700">₹60 Lakhs</TableCell>
+                          <TableCell className="text-center font-medium text-amber-700">
+                            ₹{((homeLoanResults.lowCreditTotal - homeLoanResults.mediumCreditTotal) / 100000).toFixed(2)} L
+                          </TableCell>
+                          <TableCell className="text-center font-medium text-green-700">
+                            ₹{((homeLoanResults.lowCreditTotal - homeLoanResults.highCreditTotal) / 100000).toFixed(2)} L
+                          </TableCell>
                         </TableRow>
                         <TableRow className="bg-gray-50">
                           <TableCell className="font-medium">Key Insight</TableCell>
@@ -139,6 +199,19 @@ const LoanComparison = () => {
 
             {/* Auto Loan Comparison */}
             <TabsContent value="auto">
+              <LoanCalculator 
+                loanType="auto" 
+                defaultAmount={1500000} 
+                defaultTenure={60}
+                updateResults={setAutoLoanResults}
+              />
+              
+              <LoanComparisonChart 
+                loanType="auto"
+                loanAmount={1500000}
+                results={autoLoanResults}
+              />
+              
               <Card>
                 <CardHeader>
                   <CardTitle className="text-2xl flex items-center">
@@ -146,7 +219,7 @@ const LoanComparison = () => {
                     Auto Loan Comparison
                   </CardTitle>
                   <CardDescription>
-                    Compare auto loan options for a ₹15 Lakhs loan over a 5-year tenure
+                    Compare auto loan options for different credit score ranges
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -174,34 +247,44 @@ const LoanComparison = () => {
                           <TableCell className="text-center text-green-600">9%</TableCell>
                         </TableRow>
                         <TableRow>
-                          <TableCell className="font-medium">Loan Amount</TableCell>
-                          <TableCell className="text-center">₹15 Lakhs</TableCell>
-                          <TableCell className="text-center">₹15 Lakhs</TableCell>
-                          <TableCell className="text-center">₹15 Lakhs</TableCell>
-                        </TableRow>
-                        <TableRow>
                           <TableCell className="font-medium">EMI (for 60 months)</TableCell>
-                          <TableCell className="text-center">₹34,901</TableCell>
-                          <TableCell className="text-center">₹32,596</TableCell>
-                          <TableCell className="text-center">₹31,148</TableCell>
+                          <TableCell className="text-center">₹{autoLoanResults.lowCreditEmi.toLocaleString('en-IN')}</TableCell>
+                          <TableCell className="text-center">₹{autoLoanResults.mediumCreditEmi.toLocaleString('en-IN')}</TableCell>
+                          <TableCell className="text-center">₹{autoLoanResults.highCreditEmi.toLocaleString('en-IN')}</TableCell>
                         </TableRow>
                         <TableRow>
                           <TableCell className="font-medium">Total Repayment</TableCell>
-                          <TableCell className="text-center">₹20.94 Lakhs</TableCell>
-                          <TableCell className="text-center">₹19.56 Lakhs</TableCell>
-                          <TableCell className="text-center">₹18.69 Lakhs</TableCell>
+                          <TableCell className="text-center">
+                            ₹{(autoLoanResults.lowCreditTotal / 100000).toFixed(2)} L
+                          </TableCell>
+                          <TableCell className="text-center">
+                            ₹{(autoLoanResults.mediumCreditTotal / 100000).toFixed(2)} L
+                          </TableCell>
+                          <TableCell className="text-center">
+                            ₹{(autoLoanResults.highCreditTotal / 100000).toFixed(2)} L
+                          </TableCell>
                         </TableRow>
                         <TableRow>
                           <TableCell className="font-medium">Total Interest Paid</TableCell>
-                          <TableCell className="text-center">₹5.94 Lakhs</TableCell>
-                          <TableCell className="text-center">₹4.56 Lakhs</TableCell>
-                          <TableCell className="text-center">₹3.69 Lakhs</TableCell>
+                          <TableCell className="text-center">
+                            ₹{(autoLoanResults.lowCreditInterest / 100000).toFixed(2)} L
+                          </TableCell>
+                          <TableCell className="text-center">
+                            ₹{(autoLoanResults.mediumCreditInterest / 100000).toFixed(2)} L
+                          </TableCell>
+                          <TableCell className="text-center">
+                            ₹{(autoLoanResults.highCreditInterest / 100000).toFixed(2)} L
+                          </TableCell>
                         </TableRow>
                         <TableRow>
                           <TableCell className="font-medium">Potential Savings vs NBFC</TableCell>
                           <TableCell className="text-center">—</TableCell>
-                          <TableCell className="text-center font-medium text-amber-700">₹1.38 Lakhs</TableCell>
-                          <TableCell className="text-center font-medium text-green-700">₹2.25 Lakhs</TableCell>
+                          <TableCell className="text-center font-medium text-amber-700">
+                            ₹{((autoLoanResults.lowCreditTotal - autoLoanResults.mediumCreditTotal) / 100000).toFixed(2)} L
+                          </TableCell>
+                          <TableCell className="text-center font-medium text-green-700">
+                            ₹{((autoLoanResults.lowCreditTotal - autoLoanResults.highCreditTotal) / 100000).toFixed(2)} L
+                          </TableCell>
                         </TableRow>
                         <TableRow className="bg-gray-50">
                           <TableCell className="font-medium">Key Insight</TableCell>
@@ -218,6 +301,19 @@ const LoanComparison = () => {
 
             {/* Personal Loan Comparison */}
             <TabsContent value="personal">
+              <LoanCalculator 
+                loanType="personal" 
+                defaultAmount={1500000} 
+                defaultTenure={60}
+                updateResults={setPersonalLoanResults}
+              />
+              
+              <LoanComparisonChart 
+                loanType="personal"
+                loanAmount={1500000}
+                results={personalLoanResults}
+              />
+              
               <Card>
                 <CardHeader>
                   <CardTitle className="text-2xl flex items-center">
@@ -225,7 +321,7 @@ const LoanComparison = () => {
                     Personal Loan Comparison
                   </CardTitle>
                   <CardDescription>
-                    Compare personal loan options for a ₹15 Lakhs loan over a 5-year tenure
+                    Compare personal loan options for different credit score ranges
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -253,34 +349,44 @@ const LoanComparison = () => {
                           <TableCell className="text-center text-green-600">~11% p.a.</TableCell>
                         </TableRow>
                         <TableRow>
-                          <TableCell className="font-medium">Loan Amount</TableCell>
-                          <TableCell className="text-center">₹15 Lakhs</TableCell>
-                          <TableCell className="text-center">₹15 Lakhs</TableCell>
-                          <TableCell className="text-center">₹15 Lakhs</TableCell>
-                        </TableRow>
-                        <TableRow>
                           <TableCell className="font-medium">Estimated EMI (60 months)</TableCell>
-                          <TableCell className="text-center">₹38,087</TableCell>
-                          <TableCell className="text-center">₹34,942</TableCell>
-                          <TableCell className="text-center">₹32,608</TableCell>
+                          <TableCell className="text-center">₹{personalLoanResults.lowCreditEmi.toLocaleString('en-IN')}</TableCell>
+                          <TableCell className="text-center">₹{personalLoanResults.mediumCreditEmi.toLocaleString('en-IN')}</TableCell>
+                          <TableCell className="text-center">₹{personalLoanResults.highCreditEmi.toLocaleString('en-IN')}</TableCell>
                         </TableRow>
                         <TableRow>
                           <TableCell className="font-medium">Total Repayment</TableCell>
-                          <TableCell className="text-center">₹22.85 Lakhs</TableCell>
-                          <TableCell className="text-center">₹20.96 Lakhs</TableCell>
-                          <TableCell className="text-center">₹19.56 Lakhs</TableCell>
+                          <TableCell className="text-center">
+                            ₹{(personalLoanResults.lowCreditTotal / 100000).toFixed(2)} L
+                          </TableCell>
+                          <TableCell className="text-center">
+                            ₹{(personalLoanResults.mediumCreditTotal / 100000).toFixed(2)} L
+                          </TableCell>
+                          <TableCell className="text-center">
+                            ₹{(personalLoanResults.highCreditTotal / 100000).toFixed(2)} L
+                          </TableCell>
                         </TableRow>
                         <TableRow>
                           <TableCell className="font-medium">Total Interest Paid</TableCell>
-                          <TableCell className="text-center">₹7.85 Lakhs</TableCell>
-                          <TableCell className="text-center">₹5.96 Lakhs</TableCell>
-                          <TableCell className="text-center">₹4.56 Lakhs</TableCell>
+                          <TableCell className="text-center">
+                            ₹{(personalLoanResults.lowCreditInterest / 100000).toFixed(2)} L
+                          </TableCell>
+                          <TableCell className="text-center">
+                            ₹{(personalLoanResults.mediumCreditInterest / 100000).toFixed(2)} L
+                          </TableCell>
+                          <TableCell className="text-center">
+                            ₹{(personalLoanResults.highCreditInterest / 100000).toFixed(2)} L
+                          </TableCell>
                         </TableRow>
                         <TableRow>
                           <TableCell className="font-medium">Potential Savings vs Higher Rate</TableCell>
                           <TableCell className="text-center">—</TableCell>
-                          <TableCell className="text-center font-medium text-amber-700">₹1.89 Lakhs</TableCell>
-                          <TableCell className="text-center font-medium text-green-700">₹3.29 Lakhs</TableCell>
+                          <TableCell className="text-center font-medium text-amber-700">
+                            ₹{((personalLoanResults.lowCreditTotal - personalLoanResults.mediumCreditTotal) / 100000).toFixed(2)} L
+                          </TableCell>
+                          <TableCell className="text-center font-medium text-green-700">
+                            ₹{((personalLoanResults.lowCreditTotal - personalLoanResults.highCreditTotal) / 100000).toFixed(2)} L
+                          </TableCell>
                         </TableRow>
                         <TableRow className="bg-gray-50">
                           <TableCell className="font-medium">Indicative Insight</TableCell>
