@@ -12,33 +12,29 @@ import Contact from "./pages/Contact";
 import LoanComparison from "./pages/LoanComparison";
 import NotFound from "./pages/NotFound";
 
+// Create a fresh query client instance
 const queryClient = new QueryClient();
 
-// Create an AppContent component to ensure proper context hierarchy
-const AppContent = () => (
-  <TooltipProvider>
-    <Routes>
-      <Route path="/" element={<Index />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/services" element={<Services />} />
-      <Route path="/contact" element={<Contact />} />
-      <Route path="/loan-comparison" element={<LoanComparison />} />
-      {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-      <Route path="*" element={<NotFound />} />
-    </Routes>
-    <Toaster />
-    <Sonner />
-  </TooltipProvider>
-);
-
-const App = () => (
-  <React.StrictMode>
+const App = () => {
+  return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <AppContent />
+        <TooltipProvider>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/loan-comparison" element={<LoanComparison />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          <Toaster />
+          <Sonner />
+        </TooltipProvider>
       </BrowserRouter>
     </QueryClientProvider>
-  </React.StrictMode>
-);
+  );
+};
 
 export default App;
