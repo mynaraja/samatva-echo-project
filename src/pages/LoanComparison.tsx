@@ -27,9 +27,9 @@ const LoanComparison = () => {
     lowCreditEmi: 69563,
     lowCreditTotal: 16695120,
     lowCreditInterest: 11695120,
-    mediumCreditEmi: 60369,
-    mediumCreditTotal: 14488560,
-    mediumCreditInterest: 9488560,
+    moderateCreditEmi: 60369,
+    moderateCreditTotal: 14488560,
+    moderateCreditInterest: 9488560,
     highCreditEmi: 44986,
     highCreditTotal: 10796640,
     highCreditInterest: 5796640
@@ -39,9 +39,9 @@ const LoanComparison = () => {
     lowCreditEmi: 34901,
     lowCreditTotal: 2094060,
     lowCreditInterest: 594060,
-    mediumCreditEmi: 32596,
-    mediumCreditTotal: 1955760,
-    mediumCreditInterest: 455760,
+    moderateCreditEmi: 32596,
+    moderateCreditTotal: 1955760,
+    moderateCreditInterest: 455760,
     highCreditEmi: 31148,
     highCreditTotal: 1868880,
     highCreditInterest: 368880
@@ -51,9 +51,9 @@ const LoanComparison = () => {
     lowCreditEmi: 38087,
     lowCreditTotal: 2285220,
     lowCreditInterest: 785220,
-    mediumCreditEmi: 34942,
-    mediumCreditTotal: 2096520,
-    mediumCreditInterest: 596520,
+    moderateCreditEmi: 34942,
+    moderateCreditTotal: 2096520,
+    moderateCreditInterest: 596520,
     highCreditEmi: 32608,
     highCreditTotal: 1956480,
     highCreditInterest: 456480
@@ -145,7 +145,7 @@ const LoanComparison = () => {
                         <TableRow>
                           <TableCell className="font-medium">EMI (for 20 years)</TableCell>
                           <TableCell className="text-center">₹{homeLoanResults.lowCreditEmi.toLocaleString('en-IN')}</TableCell>
-                          <TableCell className="text-center">₹{homeLoanResults.mediumCreditEmi.toLocaleString('en-IN')}</TableCell>
+                          <TableCell className="text-center">₹{homeLoanResults.moderateCreditEmi.toLocaleString('en-IN')}</TableCell>
                           <TableCell className="text-center">₹{homeLoanResults.highCreditEmi.toLocaleString('en-IN')}</TableCell>
                         </TableRow>
                         <TableRow>
@@ -154,7 +154,7 @@ const LoanComparison = () => {
                             ₹{(homeLoanResults.lowCreditTotal / 10000000).toFixed(2)} Cr
                           </TableCell>
                           <TableCell className="text-center">
-                            ₹{(homeLoanResults.mediumCreditTotal / 10000000).toFixed(2)} Cr
+                            ₹{(homeLoanResults.moderateCreditTotal / 10000000).toFixed(2)} Cr
                           </TableCell>
                           <TableCell className="text-center">
                             ₹{(homeLoanResults.highCreditTotal / 10000000).toFixed(2)} Cr
@@ -166,7 +166,7 @@ const LoanComparison = () => {
                             ₹{(homeLoanResults.lowCreditInterest / 10000000).toFixed(2)} Cr
                           </TableCell>
                           <TableCell className="text-center">
-                            ₹{(homeLoanResults.mediumCreditInterest / 10000000).toFixed(2)} Cr
+                            ₹{(homeLoanResults.moderateCreditInterest / 10000000).toFixed(2)} Cr
                           </TableCell>
                           <TableCell className="text-center">
                             ₹{(homeLoanResults.highCreditInterest / 10000000).toFixed(2)} Cr
@@ -176,7 +176,7 @@ const LoanComparison = () => {
                           <TableCell className="font-medium">Potential Savings vs HFC</TableCell>
                           <TableCell className="text-center">—</TableCell>
                           <TableCell className="text-center font-medium text-amber-700">
-                            ₹{((homeLoanResults.lowCreditTotal - homeLoanResults.mediumCreditTotal) / 100000).toFixed(2)} L
+                            ₹{((homeLoanResults.lowCreditTotal - homeLoanResults.moderateCreditTotal) / 100000).toFixed(2)} L
                           </TableCell>
                           <TableCell className="text-center font-medium text-green-700">
                             ₹{((homeLoanResults.lowCreditTotal - homeLoanResults.highCreditTotal) / 100000).toFixed(2)} L
@@ -246,7 +246,7 @@ const LoanComparison = () => {
                         <TableRow>
                           <TableCell className="font-medium">EMI (for 60 months)</TableCell>
                           <TableCell className="text-center">₹{autoLoanResults.lowCreditEmi.toLocaleString('en-IN')}</TableCell>
-                          <TableCell className="text-center">₹{autoLoanResults.mediumCreditEmi.toLocaleString('en-IN')}</TableCell>
+                          <TableCell className="text-center">₹{autoLoanResults.moderateCreditEmi.toLocaleString('en-IN')}</TableCell>
                           <TableCell className="text-center">₹{autoLoanResults.highCreditEmi.toLocaleString('en-IN')}</TableCell>
                         </TableRow>
                         <TableRow>
@@ -255,7 +255,7 @@ const LoanComparison = () => {
                             ₹{(autoLoanResults.lowCreditTotal / 100000).toFixed(2)} L
                           </TableCell>
                           <TableCell className="text-center">
-                            ₹{(autoLoanResults.mediumCreditTotal / 100000).toFixed(2)} L
+                            ₹{(autoLoanResults.moderateCreditTotal / 100000).toFixed(2)} L
                           </TableCell>
                           <TableCell className="text-center">
                             ₹{(autoLoanResults.highCreditTotal / 100000).toFixed(2)} L
@@ -267,7 +267,7 @@ const LoanComparison = () => {
                             ₹{(autoLoanResults.lowCreditInterest / 100000).toFixed(2)} L
                           </TableCell>
                           <TableCell className="text-center">
-                            ₹{(autoLoanResults.mediumCreditInterest / 100000).toFixed(2)} L
+                            ₹{(autoLoanResults.moderateCreditInterest / 100000).toFixed(2)} L
                           </TableCell>
                           <TableCell className="text-center">
                             ₹{(autoLoanResults.highCreditInterest / 100000).toFixed(2)} L
@@ -277,7 +277,7 @@ const LoanComparison = () => {
                           <TableCell className="font-medium">Potential Savings vs NBFC</TableCell>
                           <TableCell className="text-center">—</TableCell>
                           <TableCell className="text-center font-medium text-amber-700">
-                            ₹{((autoLoanResults.lowCreditTotal - autoLoanResults.mediumCreditTotal) / 100000).toFixed(2)} L
+                            ₹{((autoLoanResults.lowCreditTotal - autoLoanResults.moderateCreditTotal) / 100000).toFixed(2)} L
                           </TableCell>
                           <TableCell className="text-center font-medium text-green-700">
                             ₹{((autoLoanResults.lowCreditTotal - autoLoanResults.highCreditTotal) / 100000).toFixed(2)} L
@@ -347,7 +347,7 @@ const LoanComparison = () => {
                         <TableRow>
                           <TableCell className="font-medium">Estimated EMI (60 months)</TableCell>
                           <TableCell className="text-center">₹{personalLoanResults.lowCreditEmi.toLocaleString('en-IN')}</TableCell>
-                          <TableCell className="text-center">₹{personalLoanResults.mediumCreditEmi.toLocaleString('en-IN')}</TableCell>
+                          <TableCell className="text-center">₹{personalLoanResults.moderateCreditEmi.toLocaleString('en-IN')}</TableCell>
                           <TableCell className="text-center">₹{personalLoanResults.highCreditEmi.toLocaleString('en-IN')}</TableCell>
                         </TableRow>
                         <TableRow>
@@ -356,7 +356,7 @@ const LoanComparison = () => {
                             ₹{(personalLoanResults.lowCreditTotal / 100000).toFixed(2)} L
                           </TableCell>
                           <TableCell className="text-center">
-                            ₹{(personalLoanResults.mediumCreditTotal / 100000).toFixed(2)} L
+                            ₹{(personalLoanResults.moderateCreditTotal / 100000).toFixed(2)} L
                           </TableCell>
                           <TableCell className="text-center">
                             ₹{(personalLoanResults.highCreditTotal / 100000).toFixed(2)} L
@@ -368,7 +368,7 @@ const LoanComparison = () => {
                             ₹{(personalLoanResults.lowCreditInterest / 100000).toFixed(2)} L
                           </TableCell>
                           <TableCell className="text-center">
-                            ₹{(personalLoanResults.mediumCreditInterest / 100000).toFixed(2)} L
+                            ₹{(personalLoanResults.moderateCreditInterest / 100000).toFixed(2)} L
                           </TableCell>
                           <TableCell className="text-center">
                             ₹{(personalLoanResults.highCreditInterest / 100000).toFixed(2)} L
@@ -378,7 +378,7 @@ const LoanComparison = () => {
                           <TableCell className="font-medium">Potential Savings vs Higher Rate</TableCell>
                           <TableCell className="text-center">—</TableCell>
                           <TableCell className="text-center font-medium text-amber-700">
-                            ₹{((personalLoanResults.lowCreditTotal - personalLoanResults.mediumCreditTotal) / 100000).toFixed(2)} L
+                            ₹{((personalLoanResults.lowCreditTotal - personalLoanResults.moderateCreditTotal) / 100000).toFixed(2)} L
                           </TableCell>
                           <TableCell className="text-center font-medium text-green-700">
                             ₹{((personalLoanResults.lowCreditTotal - personalLoanResults.highCreditTotal) / 100000).toFixed(2)} L
