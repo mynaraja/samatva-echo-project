@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -95,7 +94,6 @@ const LoanComparison = () => {
               </TabsTrigger>
             </TabsList>
 
-            {/* Home Loan Comparison */}
             <TabsContent value="home">
               <LoanCalculator 
                 loanType="home" 
@@ -109,7 +107,7 @@ const LoanComparison = () => {
                 loanAmount={5000000}
                 results={homeLoanResults}
               />
-
+              
               <Card>
                 <CardHeader>
                   <CardTitle className="text-2xl flex items-center">
@@ -127,7 +125,7 @@ const LoanComparison = () => {
                         <TableRow>
                           <TableHead className="w-[200px]">Criteria</TableHead>
                           <TableHead className="text-center bg-red-50">Low CIBIL Score (&lt;700)</TableHead>
-                          <TableHead className="text-center bg-yellow-50">Small Finance Banks</TableHead>
+                          <TableHead className="text-center bg-yellow-50">Moderate CIBIL Score</TableHead>
                           <TableHead className="text-center bg-green-50">High CIBIL Score (&gt;700)</TableHead>
                         </TableRow>
                       </TableHeader>
@@ -197,7 +195,6 @@ const LoanComparison = () => {
               </Card>
             </TabsContent>
 
-            {/* Auto Loan Comparison */}
             <TabsContent value="auto">
               <LoanCalculator 
                 loanType="auto" 
@@ -229,7 +226,7 @@ const LoanComparison = () => {
                         <TableRow>
                           <TableHead className="w-[200px]">Criteria</TableHead>
                           <TableHead className="text-center bg-red-50">Low CIBIL Score (&lt;700)</TableHead>
-                          <TableHead className="text-center bg-yellow-50">Small Finance Banks</TableHead>
+                          <TableHead className="text-center bg-yellow-50">Moderate CIBIL Score</TableHead>
                           <TableHead className="text-center bg-green-50">High CIBIL Score (&gt;700)</TableHead>
                         </TableRow>
                       </TableHeader>
@@ -299,7 +296,6 @@ const LoanComparison = () => {
               </Card>
             </TabsContent>
 
-            {/* Personal Loan Comparison */}
             <TabsContent value="personal">
               <LoanCalculator 
                 loanType="personal" 
@@ -331,7 +327,7 @@ const LoanComparison = () => {
                         <TableRow>
                           <TableHead className="w-[200px]">Criteria</TableHead>
                           <TableHead className="text-center bg-red-50">Lower Credit Score (&lt;700)</TableHead>
-                          <TableHead className="text-center bg-yellow-50">Small Finance Banks</TableHead>
+                          <TableHead className="text-center bg-yellow-50">Moderate CIBIL Score</TableHead>
                           <TableHead className="text-center bg-green-50">Higher Credit Score (&gt;700)</TableHead>
                         </TableRow>
                       </TableHeader>
@@ -402,7 +398,6 @@ const LoanComparison = () => {
             </TabsContent>
           </Tabs>
 
-          {/* Disclaimer Section */}
           <div className="mt-8 p-4 bg-gray-50 rounded-lg border border-gray-200">
             <div className="flex items-start gap-3">
               <AlertCircle className="text-amber-600 mt-1 flex-shrink-0" />
