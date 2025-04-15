@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Calculator } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Header = () => {
@@ -30,6 +30,10 @@ const Header = () => {
           </Link>
           <Link to="/services" className="font-medium text-samatva-dark hover:text-samatva-teal transition-colors">
             Services
+          </Link>
+          <Link to="/loan-comparison" className="font-medium text-samatva-dark hover:text-samatva-teal transition-colors flex items-center gap-1">
+            <Calculator size={16} />
+            Loan Comparison
           </Link>
           <Link to="/events" className="font-medium text-samatva-dark hover:text-samatva-teal transition-colors">
             Events
@@ -77,6 +81,14 @@ const Header = () => {
               onClick={toggleMenu}
             >
               Services
+            </Link>
+            <Link 
+              to="/loan-comparison" 
+              className="font-medium text-samatva-dark hover:text-samatva-teal transition-colors py-2 flex items-center gap-2"
+              onClick={toggleMenu}
+            >
+              <Calculator size={16} />
+              Loan Comparison
             </Link>
             <Link 
               to="/events" 
