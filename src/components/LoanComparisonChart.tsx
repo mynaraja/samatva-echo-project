@@ -71,7 +71,7 @@ const LoanComparisonChart: React.FC<LoanComparisonChartProps> = ({ loanType, loa
               </div>
             </div>
             <div className="text-center">
-              <div className="text-sm font-medium mb-1">Medium Credit Score</div>
+              <div className="text-sm font-medium mb-1">Moderate Credit Score</div>
               <div className="bg-amber-50 p-3 rounded-md mb-2">
                 <div className="text-amber-600 font-bold mb-1">{formatPercentage(rates.medium)}</div>
                 <div className="text-xs text-gray-500">Interest Rate</div>
@@ -112,7 +112,7 @@ const LoanComparisonChart: React.FC<LoanComparisonChartProps> = ({ loanType, loa
                     </div>
                   </div>
                 </div>
-                <div className="text-xs text-center mt-1 text-gray-500">Medium Credit</div>
+                <div className="text-xs text-center mt-1 text-gray-500">Moderate Credit</div>
               </div>
               <div>
                 <div className="h-16 bg-green-100 rounded-t-md flex items-end">
@@ -163,7 +163,7 @@ const LoanComparisonChart: React.FC<LoanComparisonChartProps> = ({ loanType, loa
                     </div>
                   </div>
                 </div>
-                <div className="text-xs text-center mt-1 text-gray-500">Medium Credit</div>
+                <div className="text-xs text-center mt-1 text-gray-500">Moderate Credit</div>
               </div>
               <div>
                 <div className="h-20 bg-green-100 rounded-t-md flex items-end">
@@ -211,7 +211,7 @@ const LoanComparisonChart: React.FC<LoanComparisonChartProps> = ({ loanType, loa
                     </div>
                   </div>
                 </div>
-                <div className="text-xs text-center mt-1 text-gray-500">Medium Credit</div>
+                <div className="text-xs text-center mt-1 text-gray-500">Moderate Credit</div>
               </div>
               <div>
                 <div className="h-20 bg-green-100 rounded-t-md flex items-end">
@@ -233,7 +233,7 @@ const LoanComparisonChart: React.FC<LoanComparisonChartProps> = ({ loanType, loa
             <h3 className="text-md font-semibold text-blue-700 mb-1">Potential Savings</h3>
             <div className="grid grid-cols-2 gap-2">
               <div className="bg-white rounded-md p-3 shadow-sm">
-                <div className="text-sm text-gray-600 mb-1">Medium vs Low Credit</div>
+                <div className="text-sm text-gray-600 mb-1">Moderate vs Low Credit</div>
                 <div className="text-lg font-bold text-amber-600">{getMediumCreditSavings()}</div>
               </div>
               <div className="bg-white rounded-md p-3 shadow-sm">
