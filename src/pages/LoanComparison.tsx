@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { 
   Card, 
@@ -59,30 +58,30 @@ const LoanComparison = () => {
   });
 
   return (
-    <div className="font-poppins min-h-screen flex flex-col">
+    <div className="font-poppins min-h-screen flex flex-col bg-samatva-light">
       <main className="flex-grow">
         <div className="container mx-auto px-4 py-12">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-4">Interactive Loan Comparison</h1>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <h1 className="text-3xl font-bold text-samatva-dark mb-4">Interactive Loan Comparison</h1>
+            <p className="text-samatva-dark/80 max-w-2xl mx-auto">
               Compare loan options across different credit scores and see potential savings in real-time. 
               Adjust loan amount and tenure to visualize the impact on EMIs and total repayment.
             </p>
           </div>
 
           <Tabs defaultValue="home" onValueChange={setActiveTab} className="w-full">
-            <TabsList className="grid w-full grid-cols-3 mb-8">
-              <TabsTrigger value="home" className="flex items-center justify-center gap-2">
+            <TabsList className="grid w-full grid-cols-3 mb-8 bg-samatva-blue/10">
+              <TabsTrigger value="home" className="flex items-center justify-center gap-2 data-[state=active]:bg-samatva-blue data-[state=active]:text-white">
                 <Home size={18} />
                 <span className="hidden sm:inline">Home Loan</span>
                 <span className="sm:hidden">Home</span>
               </TabsTrigger>
-              <TabsTrigger value="auto" className="flex items-center justify-center gap-2">
+              <TabsTrigger value="auto" className="flex items-center justify-center gap-2 data-[state=active]:bg-samatva-blue data-[state=active]:text-white">
                 <Car size={18} />
                 <span className="hidden sm:inline">Auto Loan</span>
                 <span className="sm:hidden">Auto</span>
               </TabsTrigger>
-              <TabsTrigger value="personal" className="flex items-center justify-center gap-2">
+              <TabsTrigger value="personal" className="flex items-center justify-center gap-2 data-[state=active]:bg-samatva-blue data-[state=active]:text-white">
                 <Briefcase size={18} />
                 <span className="hidden sm:inline">Personal Loan</span>
                 <span className="sm:hidden">Personal</span>
@@ -393,12 +392,12 @@ const LoanComparison = () => {
             </TabsContent>
           </Tabs>
 
-          <div className="mt-8 p-4 bg-gray-50 rounded-lg border border-gray-200">
+          <div className="mt-8 p-4 bg-samatva-light rounded-lg border border-samatva-blue/20">
             <div className="flex items-start gap-3">
-              <AlertCircle className="text-amber-600 mt-1 flex-shrink-0" />
+              <AlertCircle className="text-samatva-teal mt-1 flex-shrink-0" />
               <div>
-                <h3 className="font-semibold text-gray-900 mb-2">Disclaimer</h3>
-                <p className="text-sm text-gray-700">
+                <h3 className="font-semibold text-samatva-dark mb-2">Disclaimer</h3>
+                <p className="text-sm text-samatva-dark/70">
                   The above comparison is for illustrative purposes only. Actual loan eligibility, interest rates, EMIs, and terms 
                   are determined by individual lenders based on the applicant's credit profile, income, employer category, and other 
                   underwriting criteria. All loan disbursals are subject to the lender's policies and applicable regulations as 
