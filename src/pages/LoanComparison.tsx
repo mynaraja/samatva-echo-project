@@ -1,7 +1,4 @@
-
 import React, { useState } from "react";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import { 
   Card, 
   CardContent, 
@@ -62,19 +59,7 @@ const LoanComparison = () => {
 
   return (
     <div className="font-poppins min-h-screen flex flex-col">
-      <Header />
-      
-      <main className="flex-grow pt-16">
-        <div className="bg-samatva-teal/10 py-20">
-          <div className="container mx-auto px-4 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold font-montserrat mb-4">Interactive Loan Comparison</h1>
-            <p className="text-lg text-gray-700 max-w-3xl mx-auto">
-              Compare loan options across different credit scores and see potential savings in real-time. 
-              Adjust loan amount and tenure to visualize the impact on EMIs and total repayment.
-            </p>
-          </div>
-        </div>
-
+      <main className="flex-grow">
         <div className="container mx-auto px-4 py-12">
           <Tabs defaultValue="home" onValueChange={setActiveTab} className="w-full">
             <TabsList className="grid w-full grid-cols-3 mb-8">
@@ -415,8 +400,6 @@ const LoanComparison = () => {
           </div>
         </div>
       </main>
-      
-      <Footer />
     </div>
   );
 };
