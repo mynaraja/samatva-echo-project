@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -30,9 +31,10 @@ const LoanCalculator: React.FC<LoanCalculatorProps> = ({
   defaultTenure,
   updateResults 
 }) => {
-  const [amount, setAmount] = useState<number | ''>(defaultAmount);
-  const [tenure, setTenure] = useState<number | ''>(defaultTenure);
+  const [amount, setAmount] = useState(defaultAmount);
+  const [tenure, setTenure] = useState(defaultTenure);
   
+  // Interest rates based on loan type and credit score
   const getInterestRates = () => {
     switch(loanType) {
       case "home":
@@ -62,24 +64,23 @@ const LoanCalculator: React.FC<LoanCalculatorProps> = ({
   };
 
   const calculateAndUpdateResults = () => {
-    if (amount === '' || tenure === '') {
-      return;
-    }
-    
     const rates = getInterestRates();
-    const tenureInMonths = loanType === "home" ? Number(tenure) * 12 : Number(tenure);
+    const tenureInMonths = loanType === "home" ? tenure * 12 : tenure;
     
-    const lowCreditEmi = calculateEMI(Number(amount), rates.low, tenureInMonths);
-    const mediumCreditEmi = calculateEMI(Number(amount), rates.medium, tenureInMonths);
-    const highCreditEmi = calculateEMI(Number(amount), rates.high, tenureInMonths);
+    // Calculate EMIs for different credit scores
+    const lowCreditEmi = calculateEMI(amount, rates.low, tenureInMonths);
+    const mediumCreditEmi = calculateEMI(amount, rates.medium, tenureInMonths);
+    const highCreditEmi = calculateEMI(amount, rates.high, tenureInMonths);
     
+    // Calculate total payments
     const lowCreditTotal = lowCreditEmi * tenureInMonths;
     const mediumCreditTotal = mediumCreditEmi * tenureInMonths;
     const highCreditTotal = highCreditEmi * tenureInMonths;
     
-    const lowCreditInterest = lowCreditTotal - Number(amount);
-    const mediumCreditInterest = mediumCreditTotal - Number(amount);
-    const highCreditInterest = highCreditTotal - Number(amount);
+    // Calculate total interest
+    const lowCreditInterest = lowCreditTotal - amount;
+    const mediumCreditInterest = mediumCreditTotal - amount;
+    const highCreditInterest = highCreditTotal - amount;
     
     updateResults({
       lowCreditEmi,
@@ -94,28 +95,7 @@ const LoanCalculator: React.FC<LoanCalculatorProps> = ({
     });
   };
 
-  const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    
-    if (value === '') {
-      setAmount('');
-    } else {
-      const cleanValue = value.replace(/^0+/, '');
-      setAmount(cleanValue === '' ? '' : Number(cleanValue));
-    }
-  };
-
-  const handleTenureChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    
-    if (value === '') {
-      setTenure('');
-    } else {
-      const cleanValue = value.replace(/^0+/, '');
-      setTenure(cleanValue === '' ? '' : Number(cleanValue));
-    }
-  };
-
+  // Update results whenever amount or tenure changes
   useEffect(() => {
     calculateAndUpdateResults();
   }, [amount, tenure, loanType]);
@@ -137,7 +117,7 @@ const LoanCalculator: React.FC<LoanCalculatorProps> = ({
                 id="loan-amount"
                 type="number"
                 value={amount}
-                onChange={handleAmountChange}
+                onChange={(e) => setAmount(Number(e.target.value))}
                 min={100000}
                 max={50000000}
                 step={50000}
@@ -155,7 +135,7 @@ const LoanCalculator: React.FC<LoanCalculatorProps> = ({
                 id="loan-tenure"
                 type="number"
                 value={tenure}
-                onChange={handleTenureChange}
+                onChange={(e) => setTenure(Number(e.target.value))}
                 min={loanType === "home" ? 1 : 12}
                 max={loanType === "home" ? 30 : 84}
                 step={loanType === "home" ? 1 : 6}
